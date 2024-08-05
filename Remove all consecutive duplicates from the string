@@ -1,0 +1,77 @@
+
+import java.util.*;
+import java.util.Arrays;
+
+class Main
+{
+    
+    static Boolean containsallcharacters(String substr, String pattern)
+    {
+        int count[]= new int[256];
+        for( char ch: pattern.toCharArray())
+        {
+            count[ch]++;
+        }
+        
+        for(char ch: substr.toCharArray())
+        {
+            if(count[ch]>0)
+            {
+                count[ch]--;
+            }
+        }
+        
+        for(int i=0; i<256; i++)
+        {
+            if(count[i]>0)
+            {
+                return false;
+            }
+            
+        }
+        return true;
+    }
+    
+    
+
+ static String smallestsubstr(String str, String pattern)
+ {
+     int lenstr=str.length();
+    int lenpattern=pattern.length();
+     
+     int min_length=Integer.MAX_VALUE;
+     String smallestsubstring="";
+     String substr="";
+     
+     for(int i=0; i<lenstr; i++)
+     {
+         for(int j=i; j<lenstr; j++)
+         {
+             substr=str.substring(i, j+1);
+             if(containsallcharacters(substr, pattern))
+             {
+                 int curr_length=substr.length();
+                 
+                 if(curr_length<min_length)
+                 {
+                 min_length=curr_length;
+                smallestsubstring=substr;
+             }
+             
+         }
+         
+     }
+ }
+ 
+ return smallestsubstring;
+
+}
+        public static void main(String[] args)
+        {
+            String str="this is a test string";
+            String pattern="tist";
+            System.out.println("the test string is " + str +"the pattern is " + pattern);
+            Main obj=new Main();
+            System.out.println("the smallest substring to match the pattern is " +obj.smallestsubstr(str, pattern));
+        }
+}

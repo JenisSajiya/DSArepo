@@ -1,0 +1,37 @@
+import java.util.*;
+
+class Consecutivestring
+{
+    static String deleteduplicate(String str)
+    {
+        int i=0;
+        int j=0;
+        String newelement="";
+        while(j<str.length())
+        {
+            if(str.charAt(i)==str.charAt(j))
+            {
+                j++;
+            }
+            else{
+                newelement+=str.charAt(i);
+                i=j;
+                j++;
+                
+            }
+         
+        }
+        if(j==str.length())
+        {
+            newelement+=str.charAt(i);
+        }
+        
+        return newelement;
+    }
+
+public static void main(String[] args)
+{
+    String str="aaabbbccaaba";
+    System.out.println("the resulting string is "+ deleteduplicate(str));
+}
+}

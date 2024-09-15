@@ -1,0 +1,87 @@
+import java.util.Scanner;
+class Node 
+{
+    int data;
+    Node next;
+    Node(int data)
+   {
+       this.data=data;
+       this.next=null;
+   }
+}
+
+class Sample
+{
+    void printlist(Node head)
+    {
+        Node temp=head;
+        while(temp!=null)
+        {
+            System.out.print(" " + temp.data);
+            temp=temp.next;
+        }
+    }
+    
+    void segregateeven(Node head, int N)
+    {
+        int len=0;
+        Node temp=head;
+        while(temp!=null)
+        {
+            temp=temp.next;
+            len++;
+        }
+        
+        if(len<N)
+        {
+            System.out.println("no node found");
+            
+        }
+        temp=head;
+        for(int i=1; i<len-N+1; i++)
+        {
+            temp=temp.next;
+        }
+        System.out.println("the nth node from the last is");
+        System.out.println(" " + temp.data);
+    }
+}
+
+public class Main 
+{
+    public static void main(String[] Args)
+    {
+        int choice;
+        int value;
+        Node head=null;
+        Node tail=null;
+        Scanner s=new Scanner(System.in);
+        System.out.println("press 2 to stop building the linkedlist");
+        System.out.println("enter the choice");
+        choice=s.nextInt();
+        while(choice!=2)
+        {
+            System.out.println("enter the data");
+            value=s.nextInt();
+            Node newnode= new Node(value);
+            
+            if(head==null)
+            {
+                head=newnode;
+                tail=newnode;
+            }
+            else
+            {
+                tail.next=newnode;
+                tail=newnode;
+            }
+            
+            System.out.println("press 1 to continue");
+            choice=s.nextInt();
+        }
+        
+        Sample obj=new Sample();
+        obj.printlist(head);
+        obj.nthnodefromlast(head, 3);
+    }
+}

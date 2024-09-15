@@ -1,0 +1,95 @@
+import java.util.Scanner;
+class Node 
+{
+    int data;
+    Node next;
+    Node(int data)
+   {
+       this.data=data;
+       this.next=null;
+   }
+}
+
+class Sample
+{
+    void printlist(Node head)
+    {
+        Node temp=head;
+        while(temp!=null)
+        {
+            System.out.print(" " + temp.data);
+            temp=temp.next;
+        }
+    }
+    
+      Node segregate(Node head)
+    {
+        Node estart=new Node(0);
+        Node ostart=new Node(0);
+        
+        Node eend=estart;
+        Node oend=ostart;
+        
+        Node curr=head;
+        while(curr!=null)
+        {
+            int val=curr.data;
+            
+            if(val%2==0)
+            {
+                eend.next=curr;
+                eend=curr;
+            }
+            else{
+                oend.next=curr;
+                oend=curr;
+            }
+            
+            curr=curr.next;
+        }
+        
+        oend.next=null;
+        eend.next=ostart.next;
+        
+        return estart.next;
+    }
+}
+
+public class Main 
+{
+    public static void main(String[] Args)
+    {
+        int choice;
+        int value;
+        Node head=null;
+        Node tail=null;
+        Scanner s=new Scanner(System.in);
+        System.out.println("press 2 to stop building the linkedlist");
+        System.out.println("enter the choice");
+        choice=s.nextInt();
+        while(choice!=2)
+        {
+            System.out.println("enter the data");
+            value=s.nextInt();
+            Node newnode= new Node(value);
+            
+            if(head==null)
+            {
+                head=newnode;
+                tail=newnode;
+            }
+            else
+            {
+                tail.next=newnode;
+                tail=newnode;
+            }
+            
+            System.out.println("press 1 to continue");
+            choice=s.nextInt();
+        }
+        
+        Sample obj=new Sample();
+        Node newhead=obj.segregate(head);
+        obj.printlist(newhead);
+    }
+}

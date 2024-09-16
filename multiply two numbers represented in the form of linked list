@@ -1,0 +1,125 @@
+import java.util.Scanner;
+class Node 
+{
+    int data;
+    Node next;
+    Node(int data)
+   {
+       this.data=data;
+       this.next=null;
+   }
+}
+
+class Sample
+{
+    void printlist(Node head1, Node head2)
+    {
+        Node temp1=head1;
+        Node temp2=head2;
+        while(temp1!=null)
+        {
+            System.out.print(" " + temp1.data);
+            temp1=temp1.next;
+            System.out.println();
+        }
+        
+        while(temp2!=null)
+        {
+            System.out.print(" " +temp2.data);
+            temp2=temp2.next;
+        }
+    }
+    
+    int multiply2no(Node head1, Node head2)
+    {
+        int mod=10006;
+        int num1=0;
+        int num2=0;
+        
+        while(head1!=null || head2!=null)
+        {
+            if(head1!=null)
+            {
+                num1=(((num1*10)+head1.data)%mod);
+                head1=head1.next;
+            }
+            
+            if(head2!=null)
+            {
+                num2=(((num2*10)+head2.data)%mod);
+                head2=head2.next;
+            }
+            
+            
+        }
+        
+        return ((num1*num2)%mod);
+    }
+}
+
+public class Main 
+{
+    public static void main(String[] Args)
+    {
+        int choice1;
+        int value1;
+        Node head1=null;
+        Node tail1=null;
+        Scanner s=new Scanner(System.in);
+        System.out.println("press 2 to stop building the linkedlist1");
+        System.out.println("enter the choice for ll1");
+        choice1=s.nextInt();
+        while(choice1!=2)
+        {
+            System.out.println("enter the data for ll1");
+            value1=s.nextInt();
+            Node newnode1= new Node(value1);
+            
+            if(head1==null)
+            {
+                head1=newnode1;
+                tail1=newnode1;
+            }
+            else
+            {
+                tail1.next=newnode1;
+                tail1=newnode1;
+            }
+            
+            System.out.println("press 1 to continue for ll1");
+            choice1=s.nextInt();
+        }
+        
+         int choice2;
+        int value2;
+        Node head2=null;
+        Node tail2=null;
+        System.out.println("press 2 to stop building the linkedlist2");
+        System.out.println("enter the choice for ll2");
+        choice2=s.nextInt();
+        while(choice2!=2)
+        {
+            System.out.println("enter the data for ll2");
+            value2=s.nextInt();
+            Node newnode2= new Node(value2);
+            
+            if(head2==null)
+            {
+                head2=newnode2;
+                tail2=newnode2;
+            }
+            else
+            {
+                tail2.next=newnode2;
+                tail2=newnode2;
+            }
+            
+            System.out.println("press 1 to continue for ll2");
+            choice2=s.nextInt();
+        }
+        
+        Sample obj = new Sample();
+        obj.printlist(head1, head2);
+        System.out.println(" "+ obj.multiply2no(head1, head2));
+    }
+}
